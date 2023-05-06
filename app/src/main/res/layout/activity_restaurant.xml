@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="@dimen/mid_margin"
-    tools:context=".ui.restaurants.RestaurantActivity">
+    tools:context=".ui.restaurants.RestaurantsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_restaurants_list"

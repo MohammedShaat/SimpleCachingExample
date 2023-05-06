@@ -1,6 +1,7 @@
 package com.codinginflow.simplecachingexample.data.network
 
 import com.codinginflow.simplecachingexample.data.database.DatabaseRestaurant
+import com.codinginflow.simplecachingexample.data.domain.Restaurant
 import com.google.gson.annotations.SerializedName
 
 data class NetworkRestaurant(
@@ -26,6 +27,17 @@ data class NetworkRestaurant(
             hours = hours
         )
     }
+
+    fun asDomainModel(): Restaurant {
+        return Restaurant(
+            id = id,
+            name = name,
+            type = type,
+            logo = logo,
+            address = address,
+        )
+    }
+
 }
 
 data class RestaurantDays(
