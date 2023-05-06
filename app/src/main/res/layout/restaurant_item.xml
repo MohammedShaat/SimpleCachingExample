@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="@dimen/mid_margin"
-    android:paddingVertical="@dimen/small_margin">
+    android:layout_marginVertical="@dimen/small_margin">
 
     <ImageView
         android:id="@+id/restaurant_image"
