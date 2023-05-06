@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="restaurant_item_height">100dp</dimen>
+    <dimen name="restaurant_image_size">100dp</dimen>
+    <dimen name="mid_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+</resources>

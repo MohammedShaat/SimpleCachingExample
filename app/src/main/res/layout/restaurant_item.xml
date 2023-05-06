@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/mid_margin"
+    android:paddingVertical="@dimen/small_margin">
+
+    <ImageView
+        android:id="@+id/restaurant_image"
+        android:layout_width="@dimen/restaurant_image_size"
+        android:layout_height="@dimen/restaurant_image_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/restaurant_image" />
+
+    <TextView
+        android:id="@+id/restaurant_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:textColor="?colorOnSurface"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/restaurant_type"
+        app:layout_constraintStart_toEndOf="@id/restaurant_image"
+        app:layout_constraintTop_toTopOf="@id/restaurant_image"
+        tools:text="Sugar Juice Bar" />
+
+    <TextView
+        android:id="@+id/restaurant_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        app:layout_constraintBottom_toTopOf="@id/restaurant_address"
+        app:layout_constraintStart_toEndOf="@id/restaurant_image"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_name"
+        tools:text="Bar" />
+
+    <TextView
+        android:id="@+id/restaurant_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        app:layout_constraintBottom_toBottomOf="@id/restaurant_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/restaurant_image"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_type"
+        tools:text="Suite 639 823 Latesha Trail, Ahmadbury, CA 38382" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
