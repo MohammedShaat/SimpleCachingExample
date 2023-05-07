@@ -15,7 +15,7 @@ interface RestaurantDao {
     fun getAllRestaurants(): Flow<List<DatabaseRestaurant>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRestaurants(vararg restaurants: DatabaseRestaurant)
+    suspend fun insertRestaurants(restaurants: List<DatabaseRestaurant>)
 
     @Query("DELETE FROM restaurant_table")
     suspend fun deleteAllRestaurants()

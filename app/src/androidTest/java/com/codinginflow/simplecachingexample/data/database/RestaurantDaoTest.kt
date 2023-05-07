@@ -57,7 +57,7 @@ class RestaurantDaoTest {
     fun getAllRestaurants_3DatabaseRestaurant_returnsFlowOfListOf3DatabaseRestaurant() =
         runBlocking {
             // GIVEN a list of 3 DatabaseRestaurant objects
-            dao.insertRestaurants(*restaurants.toTypedArray())
+            dao.insertRestaurants(restaurants)
 
             // WHEN call getRestaurants
             val result = dao.getAllRestaurants()
@@ -74,7 +74,7 @@ class RestaurantDaoTest {
     @Test
     fun deleteAllRestaurant_deletesAllRestaurantsInDb() = runBlocking {
         // GIVEN a list of 3 DatabaseRestaurant objects
-        dao.insertRestaurants(*restaurants.toTypedArray())
+        dao.insertRestaurants(restaurants)
 
         // WHEN call deleteAllRestaurants
         dao.deleteAllRestaurants()

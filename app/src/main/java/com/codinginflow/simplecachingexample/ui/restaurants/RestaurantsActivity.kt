@@ -3,7 +3,9 @@ package com.codinginflow.simplecachingexample.ui.restaurants
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.codinginflow.simplecachingexample.databinding.ActivityRestaurantBinding
+import com.codinginflow.simplecachingexample.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,8 +25,14 @@ class RestaurantsActivity : AppCompatActivity() {
             adapter = restaurantAdapter
         }
 
-        viewModel.restaurants.observe(this) {
-            restaurantAdapter.submitList(it)
+        viewModel.restaurants.observe(this) { resource ->
+            restaurantAdapter.submitList(resource.data)
+
+            binding.apply {
+                progressBar.isVisible = resource is Resource.Loading && resource.data.isNullOrEmpty()
+                textViewError.isVisible = resource is Resource.Error && resource.data.isNullOrEmpty()
+                textViewError.text = resource.error?.localizedMessage
+            }
         }
     }
 }
