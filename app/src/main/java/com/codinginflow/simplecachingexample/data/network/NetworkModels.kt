@@ -24,7 +24,6 @@ data class NetworkRestaurant(
             type = type,
             logo = logo,
             address = address,
-            hours = hours
         )
     }
 

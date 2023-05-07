@@ -12,7 +12,6 @@ data class DatabaseRestaurant(
     val type: String,
     val logo: String,
     val address: String,
-    val hours: RestaurantDays
 ) {
     fun asDomainModel(): Restaurant {
         return Restaurant(
