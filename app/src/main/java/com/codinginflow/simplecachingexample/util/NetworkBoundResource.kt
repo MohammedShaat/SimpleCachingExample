@@ -1,14 +1,19 @@
 package com.codinginflow.simplecachingexample.util
 
-import kotlinx.coroutines.delay
+import android.util.Log
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+
+private const val TAG = "NetworkBoundResource"
 
 fun <dbT, apiT> networkBoundResource(
     dbQuery: () -> Flow<dbT>,
     apiFetch: suspend () -> apiT,
     saveApiFetch: suspend (apiT) -> Unit,
-    shouldFetch: (dbT) -> Boolean = { true }
+    shouldFetch: (dbT) -> Boolean = { true },
 ) = flow {
+
+    Log.i(TAG, "networkBoundResource: called")
 
     val data = dbQuery().first()
     val flow = if (shouldFetch(data)) {
