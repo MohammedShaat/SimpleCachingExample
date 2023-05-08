@@ -21,60 +21,6 @@ class Repository @Inject constructor(
 
     private val dao = db.restaurantDao()
 
-    /*private val _restaurantsRetryEvent = MutableSharedFlow<Boolean>()
-    val restaurantsRetryEvent = _restaurantsRetryEvent.asSharedFlow()
-
-    private var _restaurants = networkBoundResource(
-        dbQuery = {
-            dao.getAllRestaurants().map { it.fromDatabaseToDomainModels() }
-        },
-        apiFetch = {
-            api.getRestaurants()
-        },
-        saveApiFetch = { networkRestaurants ->
-            db.withTransaction {
-                dao.deleteAllRestaurants()
-                dao.insertRestaurants(networkRestaurants.fromNetworkToDatabaseModels())
-            }
-        }
-    )
-
-    val restaurants: Flow<Resource<List<Restaurant>>>
-        get() = _restaurants
-
-    private fun getFromNetworkBoundResource() = networkBoundResource(
-        dbQuery = {
-            dao.getAllRestaurants().map { it.fromDatabaseToDomainModels() }
-        },
-        apiFetch = {
-            api.getRestaurants()
-        },
-        saveApiFetch = { networkRestaurants ->
-            db.withTransaction {
-                dao.deleteAllRestaurants()
-                dao.insertRestaurants(networkRestaurants.fromNetworkToDatabaseModels())
-            }
-        }
-    )
-
-    suspend fun retry() {
-        Log.i(TAG, "retry: called")
-        _restaurants = networkBoundResource(
-            dbQuery = {
-                dao.getAllRestaurants().map { it.fromDatabaseToDomainModels() }
-            },
-            apiFetch = {
-                api.getRestaurants()
-            },
-            saveApiFetch = { networkRestaurants ->
-                db.withTransaction {
-                    dao.deleteAllRestaurants()
-                    dao.insertRestaurants(networkRestaurants.fromNetworkToDatabaseModels())
-                }
-            }
-        )
-    }*/
-
     fun getRestaurants() = networkBoundResource(
         dbQuery = {
             dao.getAllRestaurants().map { it.fromDatabaseToDomainModels() }

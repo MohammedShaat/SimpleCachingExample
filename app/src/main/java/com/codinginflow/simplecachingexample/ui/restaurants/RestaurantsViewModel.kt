@@ -18,19 +18,24 @@ class RestaurantsViewModel @Inject constructor(
     private val repo: Repository
 ) : ViewModel() {
 
-    private var _restaurants = Channel<Flow<Resource<List<Restaurant>>>>()
-    val restaurants = _restaurants.receiveAsFlow().flatMapLatest { it }
+    private var _restaurantsChannel = Channel<Boolean>()
+    val restaurantsChannel = _restaurantsChannel.receiveAsFlow()
+
+    val restaurants = restaurantsChannel.flatMapLatest {
+        repo.getRestaurants()
+    }.stateIn(viewModelScope, SharingStarted.Lazily, Resource.Loading(emptyList()))
 
     private val _restaurantsResourceEvent = MutableSharedFlow<RestaurantsEvent>()
     val restaurantsResourceEvent = _restaurantsResourceEvent.asSharedFlow()
 
     init {
         viewModelScope.launch {
-            _restaurants.send(repo.getRestaurants())
+            _restaurantsChannel.send(true)
         }
     }
 
     fun onResourceReceived(resource: Resource<List<Restaurant>>) {
+        resource ?: return
         when (resource) {
             is Resource.Error -> viewModelScope.launch {
                 Log.i(TAG, "onResourceReceived: called")
@@ -41,7 +46,7 @@ class RestaurantsViewModel @Inject constructor(
 
     fun onRetryClick() = viewModelScope.launch {
         Log.i(TAG, "onRetryClick: called")
-        _restaurants.send(repo.getRestaurants())
+        _restaurantsChannel.send(true)
     }
 
     sealed class RestaurantsEvent {

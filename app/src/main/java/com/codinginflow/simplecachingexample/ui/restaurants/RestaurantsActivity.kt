@@ -50,7 +50,7 @@ class RestaurantsActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.restaurants.collect {  resource ->
+            viewModel.restaurants.collect { resource ->
                 Log.i(TAG, "viewModel.restaurants.observe: $resource")
                 viewModel.onResourceReceived(resource)
 
